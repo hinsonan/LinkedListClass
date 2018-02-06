@@ -17,7 +17,7 @@ private:
     node* headPtr;           //creates a pointer to the head of list
     node* tailPtr;          //creates a pointer to the tail of the list
     
-	int listSize;			//Keeps the size of the array
+	int listSize;			//Keeps the size of the list
 
 public:
 
@@ -30,8 +30,10 @@ public:
     //Add new Node to the list 
     void AddNode(int newNodeValue); 
 
+    //returns the amount of nodes in list
     int getSizeOfList();
 
+    //prints out all the nodes
     void printList();
 
 
