@@ -30,6 +30,8 @@ public:
     //Add new Node to the list 
     void AddNode(int newNodeValue); 
 
+    int getSizeOfList();
+
     void printList();
 
 

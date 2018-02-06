@@ -8,5 +8,7 @@ int main()
 
     a.printList();
 
+    cout << a.getSizeOfList() << endl;
+
     return 0;
 }

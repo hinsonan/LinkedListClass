@@ -9,7 +9,7 @@ private:
 public:
     node(int val){
         value = val;
-		nodePtr = nullptr;
+		nodePtr = 0;
     }
 
     void addLink(node* n)

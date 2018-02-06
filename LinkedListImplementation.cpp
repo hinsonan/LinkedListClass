@@ -38,6 +38,20 @@ void LinkedListImplementation::AddNode(int newNodeValue)
 
 }
 
+int LinkedListImplementation::getSizeOfList()
+{
+    int count = 0;
+    node* iterator = headPtr;
+	while(iterator != nullptr)
+	{
+		
+		iterator = iterator->node::getLink();
+        count++;
+
+	}
+    return count;
+}
+
 void LinkedListImplementation::printList()
 {
     node* iterator = headPtr;
