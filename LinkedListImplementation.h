@@ -12,31 +12,37 @@ using std::endl;
 
 
 class LinkedListImplementation{
-
+    
 private:
     node* headPtr;           //creates a pointer to the head of list
     node* tailPtr;          //creates a pointer to the tail of the list
     
-	int listSize;			//Keeps the size of the list
-
+    int listSize;            //Keeps the size of the list
+    
 public:
-
+    
     //Constructor
-	LinkedListImplementation(int firstNodeValue);
-
-	//Copy constructor
-	LinkedListImplementation(const LinkedListImplementation& orig);
-
-    //Add new Node to the list 
-    void AddNode(int newNodeValue); 
-
+    LinkedListImplementation(int firstNodeValue);
+    
+    //Copy constructor
+    LinkedListImplementation(const LinkedListImplementation& orig);
+    
+    //Assignment operator
+    LinkedListImplementation& operator=(const LinkedListImplementation& source);
+    
+    //destructor
+    ~LinkedListImplementation();
+    
+    //Add new Node to the list
+    void AddNode(int newNodeValue);
+    
     //returns the amount of nodes in list
     int getSizeOfList();
-
+    
     //prints out all the nodes
     void printList();
-
-
+    
+    
 };
 
 #endif
