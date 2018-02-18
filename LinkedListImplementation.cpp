@@ -85,11 +85,168 @@ LinkedListImplementation& LinkedListImplementation::operator=(const LinkedListIm
     
 }
 
+
+
+//Addition operator
+LinkedListImplementation operator+(const LinkedListImplementation& lhs, const LinkedListImplementation& rhs)
+{
+    //use this node pointer to point to the list
+    node* defaultList = lhs.headPtr;
+    //make a iterator node pointer to point and run through all the nodes in original list
+    node* sourceList = rhs.headPtr;
+    
+    
+    //make a new list with the first nodes added
+    //take the original node and copy it to a new node
+    node* addedNode = new node(sourceList->getValue() + defaultList->getValue());
+    LinkedListImplementation addedList(addedNode->getValue());
+    
+    //this moves the iterator to the next node so it wont copy the first node twice
+    sourceList = sourceList->getLink();
+    defaultList = defaultList->getLink();
+    
+    
+    while(sourceList != nullptr || defaultList != nullptr)
+    {
+        if (sourceList == nullptr)
+        {
+            node* addedNode = new node(0 + defaultList->getValue());
+            //take this new node addedNode and add the value to the new list
+            addedList.AddNode(addedNode->getValue());
+        }
+        else if (defaultList == nullptr)
+        {
+            node* addedNode = new node(sourceList->getValue() + 0);
+            //take this new node addedNode and add the value to the new list
+            addedList.AddNode(addedNode->getValue());
+        }
+        else
+        {
+            //take the original node and copy it to a new node
+            node* addedNode = new node(sourceList->getValue() + defaultList->getValue());
+            //take this new node addedNode and add the value to the new list
+            addedList.AddNode(addedNode->getValue());
+        }
+        
+        if (sourceList == nullptr)
+        {
+            defaultList = defaultList->getLink();
+        }
+        else if(defaultList == nullptr)
+        {
+            sourceList = sourceList->getLink();
+        }
+        else{
+            //moves both list to point to next node
+            sourceList = sourceList->getLink();
+            defaultList = defaultList->getLink();
+        }
+        
+    }
+    
+    
+    
+    return addedList;
+    
+}
+
+//Multiplication operator
+LinkedListImplementation operator*(const LinkedListImplementation& lhs, const LinkedListImplementation& rhs)
+{
+    
+    //use this node pointer to point to the list
+    node* defaultList = lhs.headPtr;
+    //make a iterator node pointer to point and run through all the nodes in original list
+    node* sourceList = rhs.headPtr;
+    
+    
+    //make a new list with the first nodes added
+    //take the original node and copy it to a new node
+    node* productNode = new node(sourceList->getValue() * defaultList->getValue());
+    LinkedListImplementation productList(productNode->getValue());
+    
+    //this moves the iterator to the next node so it wont copy the first node twice
+    sourceList = sourceList->getLink();
+    defaultList = defaultList->getLink();
+    
+    
+    while(sourceList != nullptr || defaultList != nullptr)
+    {
+        if (sourceList == nullptr)
+        {
+            productNode = new node(1 * defaultList->getValue());
+            //take this new node addedNode and add the value to the new list
+            productList.AddNode(productNode->getValue());
+        }
+        else if (defaultList == nullptr)
+        {
+            productNode = new node(sourceList->getValue() * 1);
+            //take this new node addedNode and add the value to the new list
+            productList.AddNode(productNode->getValue());
+        }
+        else
+        {
+            //take the original node and copy it to a new node
+            productNode = new node(sourceList->getValue() * defaultList->getValue());
+            //take this new node addedNode and add the value to the new list
+            productList.AddNode(productNode->getValue());
+        }
+        
+        if (sourceList == nullptr)
+        {
+            defaultList = defaultList->getLink();
+        }
+        else if(defaultList == nullptr)
+        {
+            sourceList = sourceList->getLink();
+        }
+        else{
+            //moves both list to point to next node
+            sourceList = sourceList->getLink();
+            defaultList = defaultList->getLink();
+        }
+        
+    }
+    
+    
+    return productList;
+}
+
+//Insertion Operator
+std::ostream& operator<<(std::ostream& os, const LinkedListImplementation& list)
+{
+    //this is vary similar to the above method
+    node* iterator = list.headPtr;
+    //count to be used to seperate the lines for every 10 node values
+    int count = 0;
+    //iterates through if the list isnt at the end and gets the value of the nodes
+    while(iterator != nullptr)
+    {
+        if(count == 10)
+        {
+            os << endl;
+            count = 0;
+        }
+        
+        os << iterator->getValue() << " ";
+        iterator = iterator->getLink();
+        count++;
+        
+    }
+    return os;
+}
+
 LinkedListImplementation::~LinkedListImplementation()
 {
     
-    delete headPtr;
-    delete tailPtr;
+    node* current = headPtr;
+    while( current != nullptr ) {
+        node* next = current->getLink();
+        delete current;
+        current = next;
+    }
+    headPtr = nullptr;
+    
 }
 
 //Add new Node to the list

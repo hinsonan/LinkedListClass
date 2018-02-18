@@ -30,6 +30,16 @@ public:
     //Assignment operator
     LinkedListImplementation& operator=(const LinkedListImplementation& source);
     
+    
+    //Addition operator
+    friend LinkedListImplementation operator+(const LinkedListImplementation& lhs, const LinkedListImplementation& rhs);
+    
+    //Multiplication operator    
+    friend LinkedListImplementation operator*(const LinkedListImplementation& lhs, const LinkedListImplementation& rhs);
+
+    //Insertion Operator
+    friend std::ostream& operator<<(std::ostream& os, const LinkedListImplementation& list);
+    
     //destructor
     ~LinkedListImplementation();
     
